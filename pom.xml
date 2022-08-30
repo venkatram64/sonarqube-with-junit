@@ -12,23 +12,16 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <mockito.version>3.5.13</mockito.version>
-        <checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
+        <checkstyle-maven-plugin.version>3.1.2</checkstyle-maven-plugin.version>
+        <sonar.coverage.exclusions>
+            **/com/venkat/model/*,
+            **/com/venkat/repository/*,
+            **/com/venkat/fp/*
+        </sonar.coverage.exclusions>
     </properties>
 
 
     <dependencies>
-        <!--<dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.3.3</version>
-            <scope>test</scope>
-        </dependency>-->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
@@ -60,6 +53,13 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>org.jacoco.agent</artifactId>
+            <version>0.8.7</version>
+            <classifier>runtime</classifier>
         </dependency>
 
     </dependencies>
@@ -101,25 +101,30 @@
                 <version>0.8.7</version>
                 <executions>
                     <execution>
+                        <id>jacoco-prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <!--<exclude>**/jooq/**/*.class</exclude>-->
+                                <exclude>**/com/venkat/model/*</exclude>
+                                <exclude>**/com/venkat/repository/*</exclude>
+                                <exclude>**/com/venkat/fp/*</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
-
-
     </build>
-
     <reporting>
         <plugins>
             <plugin>
@@ -132,5 +137,4 @@
             </plugin>
         </plugins>
     </reporting>
-
 </project>

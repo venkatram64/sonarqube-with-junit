@@ -24,10 +24,10 @@ test123
 
 step 3: create the project, which will give the below one
 
-mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=MyProject  -Dsonar.host.url=http://localhost:9000  -Dsonar.login=sqp_73731e3a8e5a3ec62b00a8f527c4a7fc35426787
+#mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=MyProject  -Dsonar.host.url=http://localhost:9000  -Dsonar.login=sqp_73731e3a8e5a3ec62b00a8f527c4a7fc35426787
 
 
-mvn clean verify sonar:sonar  -Dsonar.projectKey=MyProject  -Dsonar.host.url=http://localhost:9000  -Dsonar.login=sqp_73731e3a8e5a3ec62b00a8f527c4a7fc35426787
+mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=mysonar-demo  -Dsonar.host.url=http://localhost:9000  -Dsonar.login=sqp_470e3c9403d8a08c8bc55d5d10da5406da535cbf
 
 step 4: visit the sonarqube
 http://localhost:9000, check your code coverage
